@@ -134,7 +134,7 @@ Table | Diagnostic performance of Q-ProstateNet compared to traditional machine 
 * Popular prostate cancer medications like Xtandi® (enzalutamide) and Zytiga® (abiraterone acetate), which are antiandrogenic in action, may be less effective in the treatment of prostate cancer patients whose genomic profiles show an overexpression of MDM4;
 * Big biopharmaceutical companies could remodel drugs that inhibit MDM4 to treat prostate tumors.
 <p>
-<img src="review/6-Screening/CRISPR.png" alt="crispr" width="500" height="400">
+<img src="readme_images/CRISPR.png" alt="crispr" width="500" height="400">
 </p>
 <br />
 
