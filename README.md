@@ -43,8 +43,6 @@
 
 <!-- about-the-project -->
 ## About the Project
-<p>When treating a cancer patient, oncologists aim to predict the course of the patient's disease to make critical treatment decisions. Knowing a tumor's unique molecular signature can help guide these decisions by providing clues on whether a cancer is slow-growing or aggressive and deadly, or one that will resist treatment. New molecular profiling technologies have generated a wealth of information on tumors, but physicians have struggled to turn all that data into meaningful prognoses.</p>
-
 <p>Here, I developed a deep learning predictive model that can differentiate between the genomic profiles of prostate cancers that are lethal and those that are very much unlikely to cause symptoms or death. The model, called Q-ProstateNet, may help physicians know in advance whether a prostate cancer patient's tumor will spread to other parts of the body or become more resistant to treatment over time. Q-ProstateNet can also identify molecular features, genes, and biological pathways that may be linked to disease progression.</p>
 
 
@@ -57,8 +55,6 @@
 <img src="readme_images/femi.jpg" alt="arch" width="500" height="400">
 </p>
 <br />
-
-<p>Subsequent layers of the network encode a set of pathways with increasing levels of abstraction, whereby lower layers represent fine pathways and later layers represent more complex biological pathways and biological processes. The connections between different layers are constrained to follow known child–parent relationships among encoded features, genes and pathways, and as a result the network is geared toward interpretability by design.</p>
 
 <b>Fig. 2 | Inspection and interpretation of Q-ProstateNet</b>. Visualization of the inner layers of Q-ProstateNet shows the approximate relative importance of different nodes in each layer. Nodes on the far left denote feature types; the nodes in the second layer denote genes; the next layers denote higher-level biological entities; and the final layer denote the model outcome.
 <p align="center">
@@ -104,17 +100,15 @@ Table | Diagnostic performance of Q-ProstateNet compared to traditional machine 
 <img src="_plots/figure1/confusion matrix.png" alt="confusion matrix" width="500" height="400">
 </p>
 <br />
-<b>Fig. 6 | Performance comparision of Q-ProstateNet (P-Net) and a dense fully connected network</b>. Q-ProstateNet achieves better performance (measured as the average AUC over five cross-validation splits) with smaller numbers of samples compared to a dense fully connected network with the same number of parameters. The solid line represents the mean AUC and the bands represent mean ± s.d. (n = 5 experiments).
+<b>Fig. 6 | Performance comparision of Q-ProstateNet (P-Net) and a dense fully connected network</b>.
 <p>
 <img src="_plots/figure2/pnet_vs_densenet/pnet_vs_dense_sameweights_auc.png" alt="performance comparision" width="500" height="400">
 </p>
 <br />
 
 <!-- findings -->
-## Findings
-<p>Q-ProstateNet selected a hierarchy of pathways (out of 3,007 pathways on which it was trained) as relevant to classification, including post-translational modifications (SUMOylation and ubiquitination), transcriptional regulation by RUNX2 and TP53, and cell cycle checkpoints. Multiple entities of the cell cycle pathway have been reported to be involved in metastatic prostate cancer, and specifically investigated in treatment-resistant conditions. Ubiquitination and SUMOylation pathways contribute to the regulation of several tumor suppressors and oncogenes, and dysregulation of these pathways has been linked to prostate cancer initiation and progression. RUNX2 activates expression in bone matrix and adhesion proteins, and is overexpressed in metastatic disease in patients with prostate cancer; TP53 provides instructions for making a protein called tumor protein p53 which acts as a tumor suppressor.</p>
+## Findings 
 <p>It was found that among aggregate molecular alterations, copy number variation was more informative compared with mutations. This is in agreement with the findings of Hieronymus, et al. in their paper <b><a href="https://pubmed.ncbi.nlm.nih.gov/25024180/">Copy number alteration burden predicts prostate cancer relapse</a></b>.</p>
-<p>Using the DeepLIFT attribution method to obtain the total importance score of genes, AR, TP53, PTEN and RB1, which are widely known drivers of prostate cancer, were highly ranked. Alterations in less known genes, such as MDM4, FGFR1 and MUC16, also strongly contributed to the predictive performance of Q-ProstateNet.</p>
 
 <b>Fig. 7 | Joint distribution of AR, TP53 and MDM4 alterations across 1,013 prostate cancer samples using an UpSetPlot</b>. A gene is said to be altered if it has a mutation, deep deletion or high amplification.
 <p>
@@ -122,15 +116,7 @@ Table | Diagnostic performance of Q-ProstateNet compared to traditional machine 
 </p>
 <br />
 
-
-<b>Fig. 8 | Analysis of enzalutamide (enza)-resistant genes in LNCaP cells based on a genome-scale screen of about 17,300 open reading frames (ORFs). The relative enzalutamide resistance of each ORF (x-axis) is plotted as a Z-score (y-axis), with higher Z-scores representing more resistance. CSS denotes a low androgen medium.</b>. By examining Q-ProstateNet and weighting genes and pathways based on their importance, MDM4 was identified to be potentially involved in prostate cancer progression and drug resistance..
-<p>
-<img src="_plots/figure4/enzalutamide_resistance.png" alt="enzalutamide" width="500" height="400">
-</p>
-<br />
-
-
-<b>Fig. 9 | Relative viability of C42, LNCAP, LNCAP 95 and LNCAP Abl after transduction of CRISPR/Cas9 and sgRNAs targeting of MDM4</b>. When MDM4 was turned off using gene editing (CRISPR-Cas9), data analysis showed that cell proliferation decreased, implying that the cancer cells could be more sensitive to treatment. This suggests two things:
+When MDM4 was turned off using gene editing (CRISPR-Cas9), data analysis showed that cell proliferation decreased, implying that the cancer cells could be more sensitive to treatment. This suggests two things:
 * Popular prostate cancer medications like Xtandi® (enzalutamide) and Zytiga® (abiraterone acetate), which are antiandrogenic in action, may be less effective in the treatment of prostate cancer patients whose genomic profiles show an overexpression of MDM4;
 * Big biopharmaceutical companies could remodel drugs that inhibit MDM4 to treat prostate tumors.
 <p>
@@ -141,21 +127,21 @@ Table | Diagnostic performance of Q-ProstateNet compared to traditional machine 
 
 <!-- supplementary -->
 ## Supplementary Figures
-<b>Fig. 10 | Graph of mutation against copy-number alteration</b>.
+<b>Fig. 8 | Graph of mutation against copy-number alteration</b>.
 <p>
 <img src="_plots/analysis/cnv_mutation.png" alt="cnv_mut" width="500" height="400">
 </p>
 <br />
 
 
-<b>Fig. 11 | Relative ranking of nodes in each layer of Q-ProstateNet</b>.
+<b>Fig. 9 | Relative ranking of nodes in each layer of Q-ProstateNet</b>.
 <p>
 <img src="_plots/extended_figures/node_rankings.png" alt="node rankings" width="1000" height="1000">
 </p>
 <br />
 
 
-<b>Fig. 12 | Activation distribution of important nodes in each layer of Q-ProstateNet</b>.
+<b>Fig. 10 | Activation distribution of important nodes in each layer of Q-ProstateNet</b>.
 <p>
 <img src="_plots/extended_figures/activation_distribution.png" alt="activations" width="1000" height="1000">
 </p>
